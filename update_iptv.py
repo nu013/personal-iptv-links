@@ -25,41 +25,47 @@ TARGET_CHANNELS = [
 "SuperSport Football"
 ]
 
-def fetch_iptv_links():
-    M3U_URL = "https://iptv-org.github.io/iptv/index.m3u"
-    print("M3U লিস্ট ডাউনলোড হচ্ছে...")
+# একাধিক M3U প্লেলিস্ট সোর্স (আপনি এখানে আরও লিঙ্ক যোগ করতে পারেন)
+M3U_SOURCES = [
+    "https://iptv-org.github.io/iptv/index.m3u",
+    "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/bd.m3u",
+    "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/pk.m3u",
+    "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/in.m3u"
+]
+
+def fetch_links():
+    found_links = []
+    seen_urls = set() # এটি ডুপ্লিকেট লিঙ্ক চেক করার জন্য ব্যবহার হবে
     
-    try:
-        response = requests.get(M3U_URL, timeout=30)
-        lines = response.text.splitlines()
-        
-        found_links = []
-        
-        for i in range(len(lines)):
-            if lines[i].startswith("#EXTINF"):
-                # প্রতি লাইনের জন্য টার্গেট চ্যানেলগুলো চেক করবে
-                for target in TARGET_CHANNELS:
-                    if target.lower() in lines[i].lower():
-                        # নিশ্চিত করা যে পরবর্তী লাইনে লিঙ্ক আছে
-                        if i + 1 < len(lines):
-                            stream_url = lines[i+1]
-                            if stream_url.startswith("http"):
-                                found_links.append({
-                                    "name": target,
-                                    "url": stream_url
-                                })
-                                print(f"পাওয়া গেছে: {target} -> {stream_url[:30]}...")
-                # এখানে কোনো break হবে না, যাতে একই নামের সব লিঙ্ক চেক করে।
+    for url in M3U_SOURCES:
+        print(f"চেক করা হচ্ছে: {url}")
+        try:
+            response = requests.get(url, timeout=20)
+            lines = response.text.splitlines()
+            
+            for i in range(len(lines)):
+                if lines[i].startswith("#EXTINF"):
+                    for target in TARGET_CHANNELS:
+                        if target.lower() in lines[i].lower():
+                            if i + 1 < len(lines):
+                                stream_url = lines[i+1].strip()
                                 
-        return found_links
-    except Exception as e:
-        print(f"Error: {e}")
-        return []
+                                # যদি লিঙ্কটি আগে পাওয়া না গিয়ে থাকে (Duplicate Check)
+                                if stream_url.startswith("http") and stream_url not in seen_urls:
+                                    found_links.append({
+                                        "name": target,
+                                        "url": stream_url
+                                    })
+                                    seen_urls.add(stream_url) # লিঙ্কটি সেভ করে রাখা হলো যাতে পরে আর না আসে
+                                    print(f"নতুন লিঙ্ক পাওয়া গেছে: {target}")
+        except:
+            print(f"সোর্সটি কাজ করছে না: {url}")
+            
+    return found_links
 
-# ডাটা সংগ্রহ এবং সেভ
-channels_data = fetch_iptv_links()
+# ডাটা সেভ করা
+final_data = fetch_links()
+with open('links.json', 'w', encoding='utf-8') as f:
+    json.dump(final_data, f, indent=4, ensure_ascii=False)
 
-if channels_data:
-    with open('links.json', 'w', encoding='utf-8') as f:
-        json.dump(channels_data, f, indent=4, ensure_ascii=False)
-    print(f"সফলভাবে {len(channels_data)} টি লিঙ্ক links.json এ সেভ হয়েছে।")
+print(f"ডুপ্লিকেট বাদ দিয়ে মোট {len(final_data)}টি ইউনিক লিঙ্ক পাওয়া গেছে।")

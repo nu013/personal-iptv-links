@@ -30,42 +30,56 @@ M3U_SOURCES = [
      "https://github.com/asmaakther/personal-iptv-links/raw/refs/heads/main/custom.txt",
     "https://iptv-org.github.io/iptv/index.m3u",
     "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/bd.m3u"
-   
+"https://raw.githubusercontent.com/asmaakther/personal-iptv-links/main/custom.txt",
+    "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/in.m3u",
+    "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/pk.m3u",
 ]
 
-def fetch_links():
-    found_links = []
-    seen_urls = set() # এটি ডুপ্লিকেট লিঙ্ক চেক করার জন্য ব্যবহার হবে
-    
-    for url in M3U_SOURCES:
-        print(f"চেক করা হচ্ছে: {url}")
+def fetch_and_filter():
+    final_links = []
+    seen_urls = set() # ডুপ্লিকেট লিঙ্ক বাদ দেওয়ার জন্য
+
+    print("লিঙ্ক সংগ্রহের কাজ শুরু হচ্ছে...")
+
+    for source_url in M3U_SOURCES:
         try:
-            response = requests.get(url, timeout=20)
+            # সোর্স ফাইলটি ডাউনলোড করা হচ্ছে
+            response = requests.get(source_url, timeout=20)
+            if response.status_code != 200:
+                continue
+                
             lines = response.text.splitlines()
             
             for i in range(len(lines)):
+                # যদি লাইনে #EXTINF থাকে (মানে এটি চ্যানেলের নাম)
                 if lines[i].startswith("#EXTINF"):
+                    channel_info = lines[i]
+                    
+                    # আমাদের টার্গেট লিস্টের সাথে মিলিয়ে দেখা
                     for target in TARGET_CHANNELS:
-                        if target.lower() in lines[i].lower():
+                        # নাম ছোট-বড় হাতের অক্ষরের পার্থক্য মুছে চেক করা হচ্ছে
+                        if target.lower() in channel_info.lower():
+                            # ঠিক পরের লাইনেই লিঙ্ক থাকে
                             if i + 1 < len(lines):
                                 stream_url = lines[i+1].strip()
                                 
-                                # যদি লিঙ্কটি আগে পাওয়া না গিয়ে থাকে (Duplicate Check)
+                                # লিঙ্কটি যদি সঠিক হয় এবং আগে না পাওয়া গিয়ে থাকে
                                 if stream_url.startswith("http") and stream_url not in seen_urls:
-                                    found_links.append({
+                                    final_links.append({
                                         "name": target,
                                         "url": stream_url
                                     })
-                                    seen_urls.add(stream_url) # লিঙ্কটি সেভ করে রাখা হলো যাতে পরে আর না আসে
-                                    print(f"নতুন লিঙ্ক পাওয়া গেছে: {target}")
-        except:
-            print(f"সোর্সটি কাজ করছে না: {url}")
-            
-    return found_links
+                                    seen_urls.add(stream_url)
+                                    print(f"পাওয়া গেছে: {target}")
+                                    
+        except Exception as e:
+            print(f"Error reading {source_url}: {e}")
 
-# ডাটা সেভ করা
-final_data = fetch_links()
-with open('links.json', 'w', encoding='utf-8') as f:
-    json.dump(final_data, f, indent=4, ensure_ascii=False)
+    # ৩. ফলাফল links.json ফাইলে সেভ করা
+    with open('links.json', 'w', encoding='utf-8') as f:
+        json.dump(final_links, f, indent=4, ensure_ascii=False)
+    
+    print(f"মোট {len(final_links)}টি লিঙ্ক সেভ করা হয়েছে।")
 
-print(f"ডুপ্লিকেট বাদ দিয়ে মোট {len(final_data)}টি ইউনিক লিঙ্ক পাওয়া গেছে।")
+if __name__ == "__main__":
+    fetch_and_filter()

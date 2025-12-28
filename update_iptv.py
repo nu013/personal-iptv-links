@@ -5,16 +5,16 @@ import os
 # আপনার পছন্দের চ্যানেলগুলোর নাম
 TARGET_CHANNELS = [
 "tSports", # ক্রিকেট ও বাংলাদেশী চ্যানেল
+"Willow Cricket",
+"PTV Sports",   
+"Star Sports Hindi",
 "Star Sports 1", 
 "Star Sports 2", 
-"Sony Ten 1", 
-"Sony Ten 2", 
-"Sony Six",  
-"GTV", 
+"Sony Ten 1",   
 "Sports18", 
-"Willow Cricket",
 "Geo Super",
-"PTV Sports",
+"Sony Ten 2", 
+"Sony Six",   
 "Star Sports Select 1", # ফুটবল ও আন্তর্জাতিক
 "Sony Ten 5", 
 "BeIN Sports", 
@@ -27,10 +27,10 @@ TARGET_CHANNELS = [
 
 # একাধিক M3U প্লেলিস্ট সোর্স (আপনি এখানে আরও লিঙ্ক যোগ করতে পারেন)
 M3U_SOURCES = [
+     "https://github.com/asmaakther/personal-iptv-links/raw/refs/heads/main/custom.txt",
     "https://iptv-org.github.io/iptv/index.m3u",
-    "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/bd.m3u",
-    "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/pk.m3u",
-    "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/in.m3u"
+    "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/bd.m3u"
+   
 ]
 
 def fetch_links():

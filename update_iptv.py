@@ -2,11 +2,10 @@ import requests
 import json
 import os
 
-# আপনার পছন্দের চ্যানেলগুলোর নাম ঠিক যেভাবে iptv-org লিস্টে আছে
-# এখানে আপনি আপনার ইচ্ছামতো নাম যোগ বা বিয়োগ করতে পারেন
+# আপনার পছন্দের চ্যানেলগুলোর নাম
 TARGET_CHANNELS = [
     "Star Sports 1",
-   "Star Sports 2",
+    "Star Sports 2",
     "tSports",
     "Sony Ten 1", 
     "Disney Channel", 
@@ -17,7 +16,6 @@ TARGET_CHANNELS = [
 ]
 
 def fetch_iptv_links():
-    # iptv-org এর গ্লোবাল ইনডেক্স লিস্ট
     M3U_URL = "https://iptv-org.github.io/iptv/index.m3u"
     print("M3U লিস্ট ডাউনলোড হচ্ছে...")
     
@@ -29,17 +27,20 @@ def fetch_iptv_links():
         
         for i in range(len(lines)):
             if lines[i].startswith("#EXTINF"):
+                # প্রতি লাইনের জন্য টার্গেট চ্যানেলগুলো চেক করবে
                 for target in TARGET_CHANNELS:
-                    # নামের মধ্যে মিল খুঁজবে
                     if target.lower() in lines[i].lower():
-                        stream_url = lines[i+1]
-                        if stream_url.startswith("http"):
-                            found_links.append({
-                                "name": target,
-                                "url": stream_url
-                            })
-                            print(f"পাওয়া গেছে: {target}")
-                            break
+                        # নিশ্চিত করা যে পরবর্তী লাইনে লিঙ্ক আছে
+                        if i + 1 < len(lines):
+                            stream_url = lines[i+1]
+                            if stream_url.startswith("http"):
+                                found_links.append({
+                                    "name": target,
+                                    "url": stream_url
+                                })
+                                print(f"পাওয়া গেছে: {target} -> {stream_url[:30]}...")
+                # এখানে কোনো break হবে না, যাতে একই নামের সব লিঙ্ক চেক করে।
+                                
         return found_links
     except Exception as e:
         print(f"Error: {e}")
@@ -51,4 +52,4 @@ channels_data = fetch_iptv_links()
 if channels_data:
     with open('links.json', 'w', encoding='utf-8') as f:
         json.dump(channels_data, f, indent=4, ensure_ascii=False)
-    print("links.json ফাইলটি সফলভাবে তৈরি হয়েছে।")
+    print(f"সফলভাবে {len(channels_data)} টি লিঙ্ক links.json এ সেভ হয়েছে।")

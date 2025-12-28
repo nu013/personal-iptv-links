@@ -4,15 +4,25 @@ import os
 
 # আপনার পছন্দের চ্যানেলগুলোর নাম
 TARGET_CHANNELS = [
-    "Star Sports 1",
-    "Star Sports 2",
-    "tSports",
-    "Sony Ten 1", 
-    "Disney Channel", 
-    "Somoy TV",
-    "Independent TV",
-    "Al Jazeera English",
-    "Pogo"
+"tSports", # ক্রিকেট ও বাংলাদেশী চ্যানেল
+"Star Sports 1", 
+"Star Sports 2", 
+"Sony Ten 1", 
+"Sony Ten 2", 
+"Sony Six",  
+"GTV", 
+"Sports18", 
+"Willow Cricket",
+"Geo Super",
+"PTV Sports",
+"Star Sports Select 1", # ফুটবল ও আন্তর্জাতিক
+"Sony Ten 5", 
+"BeIN Sports", 
+"Sky Sports Football",
+"BT Sport 1", 
+"TNT Sports 1", 
+"TNT Sports 2",
+"SuperSport Football"
 ]
 
 def fetch_iptv_links():

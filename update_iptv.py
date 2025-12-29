@@ -4,7 +4,7 @@ import os
 
 # আপনার পছন্দের চ্যানেলগুলোর নাম
 TARGET_CHANNELS = [
-"tSports", # ক্রিকেট ও বাংলাদেশী চ্যানেল
+"T Sports", # ক্রিকেট ও বাংলাদেশী চ্যানেল
 "Willow Cricket",
 "PTV Sports",   
 "Star Sports Hindi",
@@ -29,7 +29,7 @@ TARGET_CHANNELS = [
 M3U_SOURCES = [
      "https://github.com/asmaakther/personal-iptv-links/raw/refs/heads/main/custom.txt",
     "https://iptv-org.github.io/iptv/index.m3u",
-    "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/bd.m3u"
+    "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/bd.m3u",
 "https://raw.githubusercontent.com/asmaakther/personal-iptv-links/main/custom.txt",
     "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/in.m3u",
     "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/pk.m3u",

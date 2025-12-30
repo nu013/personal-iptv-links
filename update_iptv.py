@@ -66,7 +66,6 @@ def fetch_and_filter():
                                     # ৩. ডোমেইন আগে এসেছে কি না চেক করা
                                     if domain and domain not in seen_domains:
                                         final_links.append({
-                                            "name": CHANNELS_MAP[key],
                                             "name": key, # এখানে CHANNELS_MAP[key]থেকে 'key' করা যাতে নাম আসে
                                             "url": stream_url
                                         })

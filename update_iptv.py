@@ -36,54 +36,97 @@ M3U_SOURCES = [
 ]
 
 def fetch_and_filter():
+
     final_links = []
-    seen_urls = set()
-    # ডোমেইন চেক করার জন্য ডিকশনারি (চ্যানেল নাম অনুযায়ী ডোমেইন সেট থাকবে)
-    channel_domains = {name: set() for name in CHANNELS_MAP.values()}
+
+    seen_urls = set() # ডুপ্লিকেট লিঙ্ক বাদ দেওয়ার জন্য
+
+
 
     print("লিঙ্ক সংগ্রহের কাজ শুরু হচ্ছে...")
 
+
+
     for source_url in M3U_SOURCES:
+
         try:
+
+            # সোর্স ফাইলটি ডাউনলোড করা হচ্ছে
+
             response = requests.get(source_url, timeout=20)
-            if response.status_code != 200: continue
-            
+
+            if response.status_code != 200:
+
+                continue
+
+                
+
             lines = response.text.splitlines()
+
             
+
             for i in range(len(lines)):
+
+                # যদি লাইনে #EXTINF থাকে (মানে এটি চ্যানেলের নাম)
+
                 if lines[i].startswith("#EXTINF"):
-                    channel_info = lines[i].upper() # সব বড় হাতের করে চেক করা হচ্ছে
+
+                    channel_info = lines[i]
+
                     
-                    for key, target_name in CHANNELS_MAP.items():
-                        if key.upper() in channel_info:
+
+                    # আমাদের টার্গেট লিস্টের সাথে মিলিয়ে দেখা
+
+                    for target in TARGET_CHANNELS:
+
+                        # নাম ছোট-বড় হাতের অক্ষরের পার্থক্য মুছে চেক করা হচ্ছে
+
+                        if target.lower() in channel_info.lower():
+
+                            # ঠিক পরের লাইনেই লিঙ্ক থাকে
+
                             if i + 1 < len(lines):
+
                                 stream_url = lines[i+1].strip()
+
                                 
-                                # ১. শুধু m3u8 লিঙ্ক চেক
-                                # ২. ডুপ্লিকেট ইউআরএল চেক
-                                if stream_url.lower().endswith(".m3u8") and stream_url not in seen_urls:
+
+                                # লিঙ্কটি যদি সঠিক হয় এবং আগে না পাওয়া গিয়ে থাকে
+
+                                if stream_url.startswith("http") and stream_url not in seen_urls:
+
+                                    final_links.append({
+
+                                        "name": target,
+
+                                        "url": stream_url
+
+                                    })
+
+                                    seen_urls.add(stream_url)
+
+                                    print(f"পাওয়া গেছে: {target}")
+
                                     
-                                    # ৩. একই ডোমেইন চেক
-                                    domain = urlparse(stream_url).netloc
-                                    if domain not in channel_domains[target_name]:
-                                        
-                                        final_links.append({
-                                            "name": target_name,
-                                            "url": stream_url
-                                        })
-                                        
-                                        seen_urls.add(stream_url)
-                                        channel_domains[target_name].add(domain) # এই ডোমেইনটি এই চ্যানেলের জন্য লক করা হলো
-                                        print(f"সংগৃহীত: {target_name} ({domain})")
-                                        
+
         except Exception as e:
+
             print(f"Error reading {source_url}: {e}")
 
-    # JSON ফাইলে সেভ করা
+
+
+    # ৩. ফলাফল links.json ফাইলে সেভ করা
+
     with open('links.json', 'w', encoding='utf-8') as f:
+
         json.dump(final_links, f, indent=4, ensure_ascii=False)
+
     
-    print(f"\nমোট {len(final_links)}টি ইউনিক ডোমেইন লিঙ্ক সেভ করা হয়েছে।")
+
+    print(f"মোট {len(final_links)}টি লিঙ্ক সেভ করা হয়েছে।")
+
+
 
 if __name__ == "__main__":
+
     fetch_and_filter()

@@ -11,7 +11,6 @@ CHANNELS_MAP = {
     "STAR 1": "Star Sports 1", 
     "STAR 2": "Star Sports 2", 
     "TEN 1": "Sony Ten 1",   
-    "18": "Sports18", 
     "GEO": "Geo Super",
     "TEN 2": "Sony Ten 2", 
     "SIX ": "Sony Six",    
@@ -30,54 +29,54 @@ CHANNELS_MAP = {
 M3U_SOURCES = [
     "https://github.com/asmaakther/personal-iptv-links/raw/refs/heads/main/custom.txt",
     "https://iptv-org.github.io/iptv/index.m3u",
-    "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/bd.m3u",
     "https://raw.githubusercontent.com/asmaakther/personal-iptv-links/main/custom.txt",
-    "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/in.m3u",
-    "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/pk.m3u",
+
 ]
 
-def fetch_and_filter():
-    final_links = []
-    seen_urls = set() # ডুপ্লিকেট লিঙ্ক বাদ দেওয়ার জন্য
+final_links = []
+    # এখানে আমরা প্রতিটি চ্যানেলের জন্য আলাদা সেট রাখব
+    # গঠন হবে: {"T SPORTS": {"domain1.com", "domain2.com"}, "STAR 1": {...}}
+    channel_domains = {key: set() for key in CHANNELS_MAP.keys()}
 
     print("লিঙ্ক সংগ্রহের কাজ শুরু হচ্ছে...")
 
     for source_url in M3U_SOURCES:
         try:
             response = requests.get(source_url, timeout=20)
-            if response.status_code != 200:
-                continue
-                
-            lines = response.text.splitlines()
+            if response.status_code != 200: continue
             
+            lines = response.text.splitlines()
             for i in range(len(lines)):
-                # যদি লাইনে #EXTINF থাকে
                 if lines[i].startswith("#EXTINF"):
-                    channel_info = lines[i]
+                    channel_info = lines[i].upper()
                     
-                    # CHANNELS_MAP থেকে প্রতিটি কী (Key) চেক করা হচ্ছে
                     for key in CHANNELS_MAP.keys():
-                        if key.lower() in channel_info.lower():
+                        if key in channel_info:
                             if i + 1 < len(lines):
                                 stream_url = lines[i+1].strip()
                                 
-                                # লিঙ্ক ভ্যালিডেশন এবং ডুপ্লিকেট চেক
-                                if stream_url.startswith("http") and stream_url not in seen_urls:
-                                    final_links.append({
+                                # ১. লিঙ্ক ভ্যালিডেশন
+                                if stream_url.startswith("http") and ".m3u8" in stream_url.lower():
+                                    domain = urlparse(stream_url).netloc
+                                    
+                                    # ২. নির্দিষ্ট চ্যানেলের জন্য ডোমেইনটি আগে এসেছে কি না চেক
+                                    if domain and domain not in channel_domains[key]:
+                                        final_links.append({
                                             "name": key, # এখানে CHANNELS_MAP[key]থেকে 'key' করা যাতে নাম আসে
-                                           "url": stream_url
-                                    })
-                                    seen_urls.add(stream_url)
-                                    print(f"পাওয়া গেছে: {CHANNELS_MAP[key]}")
+                                          "url": stream_url
+                                        })
+                                        # শুধু ওই চ্যানেলের সেটে ডোমেইনটি যোগ করা হচ্ছে
+                                        channel_domains[key].add(domain)
+                                        print(f"পাওয়া গেছে: {key} (Server: {domain})")
+                                        break 
                                     
         except Exception as e:
-            print(f"Error reading {source_url}: {e}")
+            print(f"Error: {e}")
 
-    # ফলাফল links.json ফাইলে সেভ করা
     with open('links.json', 'w', encoding='utf-8') as f:
         json.dump(final_links, f, indent=4, ensure_ascii=False)
     
-    print(f"--- কাজ শেষ! মোট {len(final_links)}টি লিঙ্ক সেভ করা হয়েছে। ---")
+    print(f"\nমোট {len(final_links)}টি ইউনিক লিঙ্ক সেভ হয়েছে।")
 
 if __name__ == "__main__":
     fetch_and_filter()

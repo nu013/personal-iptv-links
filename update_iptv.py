@@ -15,12 +15,13 @@ CHANNELS_MAP = {
     "GEO": "Geo Super",
     "TEN 2": "Sony Ten 2", 
     "SIX ": "Sony Six",    
-    "SELECT 1": "Star Sports Select 1", 
+    "SELECT 1": "Star Sports Select", 
     "TEN 5": "Sony Ten 5", 
     "BeIN": "Bein Sports",
-    "XTRA": "Bein xtra", 
+    "XTRA": "BeIN SPORTS XTRA",
+    "BeIN U": "beIN Sports USA", 
     "SKY": "Sky Sports Football",
-    "BT": "BT Sport 1", 
+    "BT 1": "BT Sport 1", 
     "TNT 1": "TNT Sports 1", 
     "TNT 2": "TNT Sports 2",
     "SUPER": "SuperSport Football"
@@ -66,6 +67,7 @@ def fetch_and_filter():
                                     if domain and domain not in seen_domains:
                                         final_links.append({
                                             "name": CHANNELS_MAP[key],
+                                            "name": key, # এখানে CHANNELS_MAP[key]থেকে 'key' করা যাতে নাম আসে
                                             "url": stream_url
                                         })
                                         seen_domains.add(domain) # ডোমেইনটি সেভ করে রাখা

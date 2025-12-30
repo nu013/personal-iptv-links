@@ -29,7 +29,7 @@ CHANNELS_MAP = {
 M3U_SOURCES = [
     "https://github.com/asmaakther/personal-iptv-links/raw/refs/heads/main/custom.txt",
     "https://iptv-org.github.io/iptv/index.m3u",
-    "https://raw.githubusercontent.com/asmaakther/personal-iptv-links/main/custom.txt",
+    "https://raw.githubusercontent.com/asmaakther/personal-iptv-links/main/custom.txt"
 
 ]
 

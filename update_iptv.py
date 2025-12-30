@@ -32,52 +32,50 @@ M3U_SOURCES = [
     "https://raw.githubusercontent.com/asmaakther/personal-iptv-links/main/custom.txt",
 
 ]
-
 def fetch_and_filter():
     final_links = []
-    # প্রতিটি চ্যানেলের জন্য আলাদা ডোমেইন চেক করার জন্য সেট
-    channel_domains = {key: set() for key in CHANNELS_MAP.keys()}
+    # চ্যানেল অনুযায়ী ডোমেইন চেক করার জন্য ডিকশনারি
+    channel_domains = {json_name: set() for json_name in CHANNELS_MAP.keys()}
 
     print("লিঙ্ক সংগ্রহের কাজ শুরু হচ্ছে...")
 
     for source_url in M3U_SOURCES:
         try:
             response = requests.get(source_url, timeout=20)
-            if response.status_code != 200:
-                continue
-                
+            if response.status_code != 200: continue
+            
             lines = response.text.splitlines()
             for i in range(len(lines)):
                 if lines[i].startswith("#EXTINF"):
-                    channel_info = lines[i].upper()
+                    channel_info = lines[i] # অরিজিনাল নাম রাখলাম সার্চের জন্য
                     
-                    for key in CHANNELS_MAP.keys():
-                        if key in channel_info:
+                    # ম্যাপিং লুপ
+                    for json_name, search_name in CHANNELS_MAP.items():
+                        # এখানে search_name (ডান পাশের নাম) দিয়ে খোঁজা হচ্ছে
+                        if search_name.lower() in channel_info.lower():
                             if i + 1 < len(lines):
                                 stream_url = lines[i+1].strip()
                                 
-                                # ১. লিঙ্ক ভ্যালিডেশন এবং শুধুমাত্র m3u8
                                 if stream_url.startswith("http") and ".m3u8" in stream_url.lower():
                                     domain = urlparse(stream_url).netloc
                                     
-                                    # ২. চ্যানেল অনুযায়ী ডোমেইন ডুপ্লিকেট চেক
-                                    if domain and domain not in channel_domains[key]:
+                                    # ডোমেইন চেক (একই চ্যানেলের জন্য একই সার্ভার দুইবার নেবে না)
+                                    if domain and domain not in channel_domains[json_name]:
                                         final_links.append({
-                                            "name": key, # এখানে CHANNELS_MAP[key]থেকে 'key' করা যাতে নাম আসে
-                                         "url": stream_url
+                                            "name": json_name, # এখানে JSON-এ বাম পাশের নাম বসবে
+                                            "url": stream_url
                                         })
-                                        channel_domains[key].add(domain)
-                                        print(f"পাওয়া গেছে: {key} (Server: {domain})")
+                                        channel_domains[json_name].add(domain)
+                                        print(f"পাওয়া গেছে: {json_name} (সার্চ হয়েছে: {search_name})")
                                         break 
                                     
         except Exception as e:
-            print(f"Error reading {source_url}: {e}")
+            print(f"Error: {e}")
 
-    # ফলাফল links.json ফাইলে সেভ করা
     with open('links.json', 'w', encoding='utf-8') as f:
         json.dump(final_links, f, indent=4, ensure_ascii=False)
     
-    print(f"\n--- কাজ শেষ! মোট {len(final_links)}টি লিঙ্ক সেভ করা হয়েছে। ---")
+    print(f"\nমোট {len(final_links)}টি লিঙ্ক সেভ হয়েছে।")
 
 if __name__ == "__main__":
     fetch_and_filter()

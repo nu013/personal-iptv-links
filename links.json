@@ -44,6 +44,10 @@
         "url": "https://tvsen5.aynaott.com/snTn1HD/index.m3u8"
     },
     {
+        "name": "TEN 1",
+        "url": "http://66.102.120.18:8000/play/a00e/index.m3u8"
+    },
+    {
         "name": "STAR 2",
         "url": "https://tvsen7.aynaott.com/ssport2hd/index.m3u8"
     },
@@ -52,19 +56,35 @@
         "url": "http://163.61.227.29:8000/play/a069/index.m3u8"
     },
     {
+        "name": "STAR 1",
+        "url": "http://66.102.120.18:8000/play/a009/index.m3u8"
+    },
+    {
         "name": "STAR HINDI",
         "url": "https://starsportshindiii.pages.dev/index.m3u8"
     },
     {
+        "name": "STAR HINDI",
+        "url": "http://66.102.120.18:8000/play/a072/index.m3u8"
+    },
+    {
+        "name": "BeIN",
+        "url": "http://fl1.moveonjoy.com/BEIN_SPORTS/index.m3u8"
+    },
+    {
         "name": "SELECT 1",
-        "url": "https://tvsen1.aynaott.com/YNMn5kZz8aLm/index.m3u8"
+        "url": "https://streaming.madanichannel.tv/static/streaming-playlists/hls/d3e49b76-ac06-4689-a641-9200445b647f/0.m3u8"
+    },
+    {
+        "name": "SELECT 1",
+        "url": "http://66.102.120.18:8000/play/a06x/index.m3u8"
     },
     {
         "name": "T SPORTS",
         "url": "http://103.73.107.122:3255/TSportsHD/tracks-v1a1/mono.m3u8"
     },
     {
-        "name": "BeIN",
+        "name": "BeIN U",
         "url": "http://fl1.moveonjoy.com/BEIN_SPORTS/index.m3u8"
     },
     {
@@ -88,16 +108,8 @@
         "url": "http://66.102.120.18:8000/play/a063/index.m3u8"
     },
     {
-        "name": "STAR 1",
-        "url": "http://66.102.120.18:8000/play/a009/index.m3u8"
-    },
-    {
         "name": "STAR 2",
         "url": "http://66.102.120.18:8000/play/a00v/index.m3u8"
-    },
-    {
-        "name": "SELECT 1",
-        "url": "http://66.102.120.18:8000/play/a06x/index.m3u8"
     },
     {
         "name": "T SPORTS",

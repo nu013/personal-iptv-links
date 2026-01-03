@@ -108,10 +108,6 @@
         "url": "http://66.102.120.18:8000/play/a00v/index.m3u8"
     },
     {
-        "name": "T SPORTS",
-        "url": "https://lb1-live-mv.v2h-cdn.com/hls/ffef/mulxvnghf/mulxvnghf.m3u8"
-    },
-    {
         "name": "TNT 2",
         "url": "https://tvsen6.aynaott.com/btSport2/index.m3u8"
     }

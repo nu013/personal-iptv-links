@@ -4,27 +4,15 @@ https://tvsen1.aynaott.com/YNMn5kZz8aLm/index.m3u8
 #EXTINF:-1 group-title="free tv",T Sports
 http://103.60.204.26:3255/TSportsHD/tracks-v1a1/mono.m3u8
 #EXTINF:-1 group-title="free tv",Willow Cricket
-https://tvsen5.aynaott.com/willowhd/index.m3u8
+https://bd-mc-fdlive.fancode.com/mumbai/138931_english_hls_cf91c4037e70925_1ta-di_h264/index.m3u8
 #EXTINF:-1 group-title="free tv",Geo Super
 https://anywhere.pwisetthon.com/https://ml-pull-dvc-myco.io:2096/GEO_SUPER/index.m3u8
-#EXTINF:-1 group-title="free tv",Star Sports 2
-http://163.61.227.29:8000/play/a069/index.m3u8
+ 
 #EXTINF:-1 group-title="free tv",Star Sports Hindi
 https://starsportshindiii.pages.dev/index.m3u8
-#EXTINF:-1 group-title="free tv",Star Sports Hindi
-http://66.102.120.18:8000/play/a072/index.m3u8
 #EXTINF:-1 group-title="free tv",Bangla Movies Amar Bangla
 https://app.ncare.live/c3VydmVyX8RpbEU9Mi8xNy8yMDE0GIDU6RgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcGVMZEJCTEFWeVN3PTOmdFsaWRtaW51aiPhnPTI/amarbanglatv.stream/playlist.m3u8
-#EXTINF:-1 group-title="free tv",Bangla Movies Amar Digital
-https://live-stream.utkalbongo.com/utkalbongo/stream2/hls/amarbanglatwolivestream.m3u8
 
-
-#EXTINF:-1 group-title="free tv",,Sony Aath
-http://103.60.204.26:3255/SonyAath/index.m3u8
-#EXTINF:-1 group-title="free tv",Star Jalsha
-http://103.182.170.32:8888/play/a046
-#EXTINF:-1 group-title="free tv",Star Jalsha HD
-https://tvsen7.aynaott.com/sjhdbd/tracks-v1a1/mono.ts.m3u8
 #EXTINF:-1 group-title="free tv",Zee Bangla
 http://103.182.170.32:8888/play/a048
 
@@ -36,26 +24,8 @@ https://tvsen3.aynaott.com/u3LkNQ7UHhFX/index.m3u8
 #EXTINF:-1 group-title="free tv",BTV National
 https://owrcovcrpy.gpcdn.net/bpk-tv/1709/output/1709.m3u8
 
-
-#EXTINF:-1 group-title="free tv",BTV World
-http://103.230.105.252:1935/live/btv/manifest.m3u8
-
-#EXTINF:-1 group-title="free tv",BTV Chattogram
-#http://cdn01.palki.tv:80/live/BTVChattogram-M/tracks-v1a1/mono.m3u8
-https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDDEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFsaWRtaW51aiPhnPTI2/btvbd-office-sg.stream/tracks-v1a1/mono.m3u8
-#EXTINF:-1 group-title="free tv",bt
-https://www.btvlive.gov.bd/live/37f2df30-3edf-42f3-a2ee-6185002c841c/BD/a707f2dc-9704-413a-a67c-17c64a77c350/index.m3u8
-
-#EXTINF:-1 group-title="free tv",BTV Sangsad
- https://www.btvlive.gov.bd/live/37f2df30-3edf-42f3-a2ee-6185002c841c/BD/9ee3b4f9-fd0a-47c5-a135-2575c5691613/index.m3u8
-
-#EXTINF:-1 group-title="free tv",BTV News
-https://www.btvlive.gov.bd/live/37f2df30-3edf-42f3-a2ee-6185002c841c/BD/d96eb7f4-83c2-4472-9597-3568390a8ebf/index.m3u8
-
 #EXTINF:-1 group-title="free tv",Gazi TV
-http://172.20.3.1:81/GaziTVHD/tracks-v1a1/mono.m3u8
-#EXTINF:-1 group-title="free tv",Gazi TV
-https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDDEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFsaWRtaW51aiPhnPTI2/gazibdz.stream/tracks-v1a1/mono.m3u8#EXTINF:-1 group-title="free tv",azi TV
+https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDDEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFsaWRtaW51aiPhnPTI2/gazibdz.stream/tracks-v1a1/mono.m3u8
 
 
 
@@ -64,20 +34,13 @@ https://owrcovcrpy.gpcdn.net/bpk-tv/1722/output/1722.m3u8
 #EXTINF:-1 group-title="free tv",ATN Bangla UK
 https://app.ncare.live/c3VydmVyX8RpbEU9Mi8xNy8yMDE0GIDU6RgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcGVMZEJCTEFWeVN3PTOmdFsaWRtaW51aiPhnPTI2/atnbanglauk-off.stream/playlist.m3u8
 #EXTINF:-1 group-title="free tv",Channel I
-https://app.ncare.live/c3VydmVyX8RpbEU9Mi8xNy8yMDE0GIDU6RgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcGVMZEJCTEFWeVN3PTOmdFsaWRtaW51aiPhnPTI2/channeli-8-org.stream/playlist.m3u8
-#EXTINF:-1 group-title="free tv",d
- https://tvsen6.aynaott.com/channeli/tracks-v1a1/mono.ts.m3u8
-#EXTINF:-1 group-title="free tv",d
 https://owrcovcrpy.gpcdn.net/bpk-tv/1723/output/1723.m3u8
-
-#EXTINF:-1 group-title="free tv",Ekushay TV
- https://ekusheyserver.com/hls-live/livepkgr/_definst_/liveevent/livestream3.m3u8
  #EXTINF:-1 group-title="free tv",NTV
  https://owrcovcrpy.gpcdn.net/bpk-tv/1716/output/1716.m3u8
  
 #EXTINF:-1 group-title="free tv",NTV UK
 https://app.ncare.live/c3VydmVyX8RpbEU9Mi8xNy8yMDE0GIDU6RgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcGVMZEJCTEFWeVN3PTOmdFsaWRtaW51aiPhnPTI2/ntvuk00332211.stream/playlist.m3u8
-#EXTINF:-1 group-title="free tv",n
+#EXTINF:-1 group-title="free tv",nt
 https://app.ncare.live/c3VydmVyX8RpbEU9Mi8xNy8yMDE0GIDU6RgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcGVMZEJCTEFWeVN3PTOmdFsaWRtaW51aiPhnPTI2/ntvuk00332211.stream/playlist.m3u8
 
 #EXTINF:-1 group-title="free tv",RTV
@@ -104,7 +67,7 @@ https://tvsen6.aynaott.com/mohonatv/index.m3u8
 https://tvsen6.aynaott.com/asiantv/index.m3u8
 #EXTINF:-1 group-title="free tv",Bangla TV
 https://app.ncare.live/c3VydmVyX8RpbEU9Mi8xNy8yMDE0GIDU6RgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcGVMZEJCTEFWeVN3PTOmdFsaWRtaW51aiPhnPTI2/banglatvhd.stream/playlist.m3u8
-#EXTINF:-1 group-title="free tv",d
+#EXTINF:-1 group-title="free tv",vison
 https://tvsen6.aynaott.com/banglatv/index.m3u8
 #EXTINF:-1 group-title="free tv",Bangla TV Europe
 https://byphdgllyk.gpcdn.net/hls/banglatveurope/index.m3u8

@@ -21,11 +21,11 @@
     },
     {
         "name": "BeIN",
-        "url": "https://amg01334-beinsportsllc-beinxtra-samsungau-eiyvc.amagi.tv/playlist/amg01334-beinsportsllc-beinxtra-samsungau/playlist.m3u8"
+        "url": "https://bein-beinxtrasports-firetv.amagi.tv/playlist.m3u8"
     },
     {
         "name": "BeIN",
-        "url": "https://bein-esp-klowdtv.amagi.tv/playlist.m3u8"
+        "url": "https://aegis-cloudfront-1.tubi.video/01f6c149-449b-4248-8bda-2278799205ec/playlist.m3u8"
     },
     {
         "name": "STAR 1",
@@ -36,8 +36,20 @@
         "url": "http://161.248.38.40:8000/play/a071/index.m3u8"
     },
     {
+        "name": "STAR 1",
+        "url": "http://111.88.78.21:8000/play/a0to/index.m3u8"
+    },
+    {
         "name": "STAR 2",
-        "url": "http://tvn1.chowdhury-shaheb.com/starsport2/index.m3u8"
+        "url": "http://103.121.6.5:8000/play/a05u/index.m3u8"
+    },
+    {
+        "name": "STAR 2",
+        "url": "http://111.88.78.21:8000/play/a0x8/index.m3u8"
+    },
+    {
+        "name": "STAR 2",
+        "url": "http://103.113.103.202:8001/play/a028/index.m3u8"
     },
     {
         "name": "STAR 2",

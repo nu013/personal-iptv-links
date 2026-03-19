@@ -29,15 +29,19 @@
     },
     {
         "name": "STAR 1",
+        "url": "http://116.90.120.151:8000/play/a0gs/index.m3u8"
+    },
+    {
+        "name": "STAR 1",
         "url": "http://iptvcasomsapi.jprdigital.in/x-media/C0420/master.m3u8"
     },
     {
         "name": "STAR 2",
-        "url": "http://iptvcasomsapi.jprdigital.in/x-media/C0413/master.m3u8"
+        "url": "http://116.90.120.151:8000/play/a0jb/index.m3u8"
     },
     {
         "name": "STAR 2",
-        "url": "http://103.121.6.5:8000/play/a05u/index.m3u8"
+        "url": "http://iptvcasomsapi.jprdigital.in/x-media/C0422/master.m3u8"
     },
     {
         "name": "STAR 2",
